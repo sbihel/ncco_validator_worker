@@ -1,7 +1,6 @@
 mod utils;
 
 use cfg_if::cfg_if;
-// use include_flate::flate;
 use js_sys::Reflect;
 use serde_json::Value;
 use valico::json_schema;
@@ -49,7 +48,6 @@ pub async fn wasm_entry(req: Request) -> Result<Response, JsValue> {
     };
 
     // Need the schema at compile time because we cannot access the filesystem.
-    // flate!(static file: str from "../ncco.schema");
     let file = include_str!("../ncco.schema");
     let json_v4_schema: Value = serde_json::from_str(file).unwrap();
     let mut scope = json_schema::Scope::new();
